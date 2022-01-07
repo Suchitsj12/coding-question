@@ -1,3 +1,5 @@
+1) question :- Length of LL(iterative method)
+
 #include <iostream>
 
 class Node
@@ -70,4 +72,526 @@ int length(Node *head)
        return count;
    
 }
+
+
+
+
+
+
+
+
+2) printing ith node:-
+
+#include <iostream>
+
+class Node
+{
+public:
+	int data;
+	Node *next;
+	Node(int data)
+	{
+		this->data = data;
+		this->next = NULL;
+	}
+};
+
+using namespace std;
+#include "solution.h"
+
+Node *takeinput()
+{
+	int data;
+	cin >> data;
+	Node *head = NULL, *tail = NULL;
+	while (data != -1)
+	{
+		Node *newNode = new Node(data);
+		if (head == NULL)
+		{
+			head = newNode;
+			tail = newNode;
+		}
+		else
+		{
+			tail->next = newNode;
+			tail = newNode;
+		}
+		cin >> data;
+	}
+	return head;
+}
+
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		Node *head = takeinput();
+		int pos;
+		cin >> pos;
+		printIthNode(head, pos);
+		cout << endl;
+	}
+	return 0;
+}
+void printIthNode(Node *head, int i)
+{
+    //Write your code here
+    
+    if(head==NULL){
+    return ;
+            }
+Node*temp=head;
+int count=0;
+    //as temp agar null ho gya to aage ki values kese forward hogi
+//
+    while(count!=i && temp!=NULL){
+    temp=temp->next;
+    count++;
+}
+    
+    if(temp!=NULL){
+cout<< temp->data<<endl;}
+  
+}
+
+
+
+
+
+
+3) Deleting node:-
+
+#include <iostream>
+
+class Node
+{
+public:
+	int data;
+	Node *next;
+	Node(int data)
+	{
+		this->data = data;
+		this->next = NULL;
+	}
+};
+
+using namespace std;
+#include "solution.h"
+
+Node *takeinput()
+{
+	int data;
+	cin >> data;
+	Node *head = NULL, *tail = NULL;
+	while (data != -1)
+	{
+		Node *newNode = new Node(data);
+		if (head == NULL)
+		{
+			head = newNode;
+			tail = newNode;
+		}
+		else
+		{
+			tail->next = newNode;
+			tail = newNode;
+		}
+		cin >> data;
+	}
+	return head;
+}
+
+void print(Node *head)
+{
+	Node *temp = head;
+	while (temp != NULL)
+	{
+		cout << temp->data << " ";
+		temp = temp->next;
+	}
+	cout << endl;
+}
+
+int main()
+{
+	int t;
+	cin >> t;
+
+	while (t--)
+	{
+		Node *head = takeinput();
+		int pos;
+		cin >> pos;
+		head = deleteNode(head, pos);
+		print(head);
+	}
+
+	return 0;
+}
+Node *deleteNode(Node *head, int pos)
+{
+    if(head==NULL){
+        return head;
+    }
+    if(pos==0){
+    return head=head->next;
+    }
+    else{
+        int si=0;
+        Node*temp=head;
+        while(si<pos-1&&temp->next!=NULL){
+             si++;
+            temp=temp->next;
+            //si++;
+ 
+        }
+        if(temp->next!=NULL){
+            temp->next=temp->next->next;
+        }
+        return head;
+    }
+    
+}
+
+
+
+
+
+4)length of linked list recursively:-
+
+#include <iostream>
+class Node {
+   public:
+    int data;
+    Node *next;
+    Node(int data) {
+        this->data = data;
+        this->next = NULL;
+    }
+};
+
+using namespace std;
+#include "solution.h"
+
+Node *takeinput() {
+    int data;
+    cin >> data;
+    Node *head = NULL, *tail = NULL;
+    while (data != -1) {
+        Node *newNode = new Node(data);
+        if (head == NULL) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        cin >> data;
+    }
+    return head;
+}
+
+void print(Node *head) {
+    Node *temp = head;
+
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+
+    cout << endl;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while (t--) {
+        Node *head = takeinput();
+        cout << length(head) << "\n";
+    }
+}
+int length(Node *head) {
+   /// Write your code here
+    if(head==NULL){
+       return 0;
+    }
+//Node*temp=head;
+    
+    return 1+length(head->next);
+    
+    
+}
+
+
+
+
+5) inserting node recursively:-
+
+#include <iostream>
+
+class Node {
+   public:
+    int data;
+    Node *next;
+    Node(int data) {
+        this->data = data;
+        this->next = NULL;
+    }
+};
+
+using namespace std;
+#include "solution.h"
+
+Node *takeinput() {
+    int data;
+    cin >> data;
+    Node *head = NULL, *tail = NULL;
+    while (data != -1) {
+        Node *newNode = new Node(data);
+        if (head == NULL) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        cin >> data;
+    }
+    return head;
+}
+
+void print(Node *head) {
+    Node *temp = head;
+
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+
+    cout << "\n";
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        Node *head = takeinput();
+        int pos, data;
+        cin >> pos >> data;
+        head = insertNode(head, pos, data);
+        print(head);
+    }
+}
+Node* insertNode(Node *head, int i, int data) {
+	// Write your code here
+    if(head==NULL){
+        return head;
+    }
+    if(i==0){
+        Node*temp=new Node(data);
+        // Node n1;
+        // n1.data=data;
+        // temp->n1.next;
+        temp->next=head;
+        return temp;
+ }
+    if(i==1){
+        Node*temp=new Node(data);
+        temp->next=head->next;
+        head->next=temp;
+    }
+ //else(){
+ insertNode(head->next,i-1, data);
+   //  int x =head->next;
+     //head->next->x;
+     
+     return head;
+    
+    
+}
+
+
+
+
+
+
+6) Delete node recursively:-
+
+#include <iostream>
+
+class Node
+{
+public:
+	int data;
+	Node *next;
+	Node(int data)
+	{
+		this->data = data;
+		this->next = NULL;
+	}
+};
+
+using namespace std;
+#include "solution.h"
+
+Node *takeinput()
+{
+	int data;
+	cin >> data;
+	Node *head = NULL, *tail = NULL;
+	while (data != -1)
+	{
+		Node *newNode = new Node(data);
+		if (head == NULL)
+		{
+			head = newNode;
+			tail = newNode;
+		}
+		else
+		{
+			tail->next = newNode;
+			tail = newNode;
+		}
+		cin >> data;
+	}
+	return head;
+}
+
+void print(Node *head)
+{
+	Node *temp = head;
+	while (temp != NULL)
+	{
+		cout << temp->data << " ";
+		temp = temp->next;
+	}
+	cout << endl;
+}
+
+int main()
+{
+	int t;
+	cin >> t;
+
+	while (t--)
+	{
+		Node *head = takeinput();
+		int pos;
+		cin >> pos;
+		head = deleteNodeRec(head, pos);
+		print(head);
+	}
+
+	return 0;
+}
+
+ Node *deleteNodeRec(Node *head, int pos) {
+	//Write your code here
+    if(head==NULL){
+        return head;
+    }
+    if(pos==0){
+        head=head->next;
+        return head;
+    }
+
+     Node* smallans=deleteNodeRec(head->next,pos-1); 
+    head->next=smallans;
+
+    return head;
+    
+}
+
+
+
+
+7) finding a node recursively:-
+
+#include <iostream>
+
+class Node
+{
+public:
+	int data;
+	Node *next;
+	Node(int data)
+	{
+		this->data = data;
+		this->next = NULL;
+	}
+};
+
+using namespace std;
+#include "solution.h"
+
+Node *takeinput()
+{
+	int data;
+	cin >> data;
+	Node *head = NULL, *tail = NULL;
+	while (data != -1)
+	{
+		Node *newNode = new Node(data);
+		if (head == NULL)
+		{
+			head = newNode;
+			tail = newNode;
+		}
+		else
+		{
+			tail->next = newNode;
+			tail = newNode;
+		}
+		cin >> data;
+	}
+	return head;
+}
+
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		Node *head = takeinput();
+		int val;
+		cin >> val;
+		cout << findNode(head, val) << endl;
+	}
+}
+
+int findNode(Node *head, int n){
+if(head==NULL){
+        return -1;
+    }
+   
+//     return findNode(head->next,n);
+    Node*temp=head;
+    int count=0;
+    // if
+    while(temp!=NULL){
+        // count++;
+        if(temp->data==n){
+            return count;
+        }
+         else{
+            
+            temp=temp->next;
+            count++;
+        }
+    }
+    return -1;
+        
+}
+
+
+
+
+
+
 
